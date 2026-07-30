@@ -1,5 +1,9 @@
-import { useState } from 'react'
-import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
+// ─────────────────────────────────────────────────────────
+// App.jsx  —  Replace src/App.jsx with this
+// ─────────────────────────────────────────────────────────
+
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { AppProvider } from './context/AppContext'
 import Sidebar from './components/Sidebar'
 import TopBar from './components/TopBar'
 import Home from './screens/Home'
@@ -21,14 +25,14 @@ function AppLayout() {
         <TopBar currentScreen={currentScreen} />
         <main className="flex-1 overflow-y-auto p-6">
           <Routes>
-            <Route path="/" element={<Navigate to="/home" replace />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/handover" element={<Handover />} />
+            <Route path="/"               element={<Navigate to="/home" replace />} />
+            <Route path="/home"           element={<Home />} />
+            <Route path="/handover"       element={<Handover />} />
             <Route path="/past-handovers" element={<PastHandovers />} />
-            <Route path="/roster" element={<Roster />} />
-            <Route path="/critsit" element={<CritSit />} />
-            <Route path="/sop" element={<SOP />} />
-            <Route path="/leave" element={<Leave />} />
+            <Route path="/roster"         element={<Roster />} />
+            <Route path="/critsit"        element={<CritSit />} />
+            <Route path="/sop"            element={<SOP />} />
+            <Route path="/leave"          element={<Leave />} />
           </Routes>
         </main>
       </div>
@@ -39,7 +43,9 @@ function AppLayout() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppLayout />
+      <AppProvider>
+        <AppLayout />
+      </AppProvider>
     </BrowserRouter>
   )
 }
